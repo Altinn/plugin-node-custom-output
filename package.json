@@ -1,0 +1,14 @@
+{
+  "name": "pl-custom-output",
+  "version": "1.0.0-alpha",
+  "description": "Custom Output Plugin for Pattern Lab Node",
+  "main": "index.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikaeI/pl-custom-output.git"
+  },
+  "author": "Mikael Åsbjørnsson",
+  "license": "MIT",
+  "homepage": "https://github.com/MikaeI/pl-custom-output#readme"
+}
