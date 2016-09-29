@@ -1,8 +1,7 @@
 var pluginName = 'pl-custom-output'; var path = require('path')
 var fs = require('fs-extra')
-var generateOutput = require('./src/generateOutput')
 function onPatternIterate (patternlab, pattern) {
-  generateOutput(patternlab, pattern)
+  console.log('TEST...', patternlab.config.paths.source.patterns)
 }
 function registerEvents (patternlab) {
   patternlab.events.on('patternlab-pattern-write-end', onPatternIterate)
@@ -40,6 +39,5 @@ function pluginInit (patternlab) {
     !patternlab.config[pluginName]) {
     registerEvents(patternlab); patternlab.config[pluginName] = true
   }
-  console.log('TEST', patternlab.config.paths.source.patterns)
 }
 module.exports = pluginInit
