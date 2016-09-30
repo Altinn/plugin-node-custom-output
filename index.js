@@ -3,7 +3,9 @@ var fs = require('fs-extra'); var glob = require('glob')
 var MP = require('../patternlab-node/core/lib/markdown_parser')
 var markdown_parser = new MP()
 function onPatternIterate (patternlab, pattern) {
+  console.log('FØR', patternlab.config.paths.source.patterns + pattern.relPath)
   if (pattern.relPath.indexOf('.md') !== -1) {
+    console.log('ETTER', patternlab.config.paths.source.patterns + pattern.relPath)
     var markdownFile = fs.readFileSync(
       path.resolve(patternlab.config.paths.source.patterns +
         pattern.relPath), 'utf8')
