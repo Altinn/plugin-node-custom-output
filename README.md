@@ -6,7 +6,7 @@ The Custom Output Plugin allows Pattern Lab Node to generate customized markup s
 
 To add the Custom Output Plugin to your project using [npm](http://npmjs.com/):
 
-    npm install git+https://github.com/MikaeI/plugin-node-pl-custom-output.git
+    npm install git+https://github.com/MikaeI/plugin-node-custom-output.git
 
 Or add it directly to your project's `package.json` file and run `npm install`.
 
@@ -32,4 +32,4 @@ TODO: The plugin should enable the bumping of a component's version number to "b
 
 ## Enabling/disabling the plugin
 
-After install, you may manually enable or disable the plugin by removing it from the `patternlab-config.json` file. Installation added a key called `plugin-node-pl-custom-output` to it.
+After install, you may manually enable or disable the plugin by removing it from the `patternlab-config.json` file. Installation added a key called `plugin-node-custom-output` to it.

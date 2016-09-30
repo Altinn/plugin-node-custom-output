@@ -1,5 +1,5 @@
 console.log('TESTTESTTESTTESTTEST')
-var pluginName = 'plugin-node-pl-custom-output'; var path = require('path')
+var pluginName = 'plugin-node-custom-output'; var path = require('path')
 var fs = require('fs-extra'); var glob = require('glob')
 function onPatternIterate (patternlab, pattern) {
   console.log('TEST...', patternlab.config.paths.source.patterns)
@@ -73,7 +73,8 @@ function pluginInit (patternlab) {
           fs.outputFileSync(writePath, tabJSFileContents)
         }
       } catch (ex) {
-        console.trace('plugin-node-tab: Error occurred while copying pluginFile',
+        console.trace(
+          'plugin-node-tab: Error occurred while copying pluginFile',
           pluginFiles[i])
         console.log(ex)
       }
