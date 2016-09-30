@@ -33,7 +33,7 @@ function getPluginFrontendConfig () {
     'stylesheets': [],
     'javascripts': ['patternlab-components\/pattern-lab\/' + pluginName +
       '\/js\/' + pluginName + '.js'],
-    'onready': 'PluginTab.init()', 'callback': ''
+    'onready': 'PluginCustomOutput.init()', 'callback': ''
   }
 }
 function pluginInit (patternlab) {
