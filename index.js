@@ -1,15 +1,15 @@
 var pluginName = 'plugin-node-custom-output'; var path = require('path')
 var fs = require('fs-extra'); var glob = require('glob')
 var gulp = require('gulp'); var gulp_rename = require('gulp-rename')
+var MP = require('./node_modules/patternlab-node/core/lib/markdown_parser')
 function onPatternIterate (patternlab, pattern) {
   // console.log('TEST...', patternlab.config.paths.source.patterns)
-  var MP = require('node_modules/patternlab-node/core/lib/markdown_parser')
   var markdown_parser = new MP()
   gulp.src('./public/patterns/**/*')
     .pipe(gulp_rename(function (_path) {
       if (path.dirname !== '.') {
         var markdownFileName =
-          path.resolve('source/_patterns/00-atomer/01-input/01-avkrysningsboks.md')
+          path.resolve('./source/_patterns/00-atomer/01-input/01-avkrysningsboks.md')
         var markdownFileContents = fs.readFileSync(markdownFileName, 'utf8')
         var markdownObject = markdown_parser.parse(markdownFileContents)
         _path.extname += markdownObject.version + _path.extname
