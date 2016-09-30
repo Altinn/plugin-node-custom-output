@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MikaeI/plugin-node-custom-output.git"
+    "url": "git+https://github.com/Altinn/plugin-node-custom-output.git"
   },
   "scripts": { "postinstall": "node ./postinstall.js" },
   "author": "Mikael Åsbjørnsson",
   "license": "MIT",
-  "homepage": "https://github.com/MikaeI/plugin-node-custom-output#readme"
+  "homepage": "https://github.com/Altinn/plugin-node-custom-output#readme"
 }
