@@ -4,7 +4,10 @@ var gulp = require('gulp'); var gulp_rename = require('gulp-rename')
 var MP = require('../patternlab-node/core/lib/markdown_parser')
 function onPatternIterate (patternlab, pattern) {
   var patternFile = fs.readFileSync(
-    path.resolve(patternlab.config.paths.public.patterns + pattern.relPath), 'utf8')
+    path.resolve(
+      patternlab.config.paths.public.patterns +
+      (pattern.relPath.replace(/\//g, '').replace('mustache', ''))
+    ), 'utf8')
 
   console.log(patternFile)
 
