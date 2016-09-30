@@ -10,18 +10,18 @@ function onPatternIterate (patternlab, pattern) {
   }
   if (pattern.relPath.indexOf('probably-not-needed') === -1 &&
     pattern.relPath.indexOf('.mustache') !== -1) {
-    console.log(markdownFile)
     var patternFile = fs.readFileSync(
       path.resolve(
         patternlab.config.paths.public.patterns +
         pattern.relPath.replace(/\//g, '-').replace('.mustache', '/') +
         pattern.relPath.replace(/\//g, '-')), 'utf8')
     var markdownObject = markdown_parser.parse(markdownFile)
-    patternFile = markdownObject.prepend + patternFile + markdownObject.append
+    patternFile = (markdownObject.prepend || '') + patternFile +
+      (markdownObject.append || '')
     fs.outputFileSync(patternlab.config.paths.public.patterns +
         pattern.relPath.replace(/\//g, '-').replace('.mustache', '/') +
         'custom-' + pattern.relPath.replace(/\//g, '-') + '-v' +
-        markdownObject.version + '.mustache',
+        (markdownObject.version || '') + '.mustache',
       patternFile)
   }
 }

@@ -14,7 +14,7 @@ Or add it directly to your project's `package.json` file and run `npm install`.
 
 ### Overview
 
-The plugin will look for the following metadata keys in a component's Markdown file: `prepend`, `append` (strings of text or markup) and `version` (string).
+The plugin will look for the following metadata keys in a component's Markdown file: `prepend`, `append` (strings of text or markup) and `version` (string). If omitted, fallback values for these are just empty strings.
 
 
 Example:

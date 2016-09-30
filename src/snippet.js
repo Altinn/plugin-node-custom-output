@@ -1,1 +1,1 @@
-console.log('THIS IS A SNIPPET, YO')
+console.log('THIS IS A SNIPPET, YO!')
