@@ -1,3 +1,4 @@
+console.log('TESTTESTTESTTESTTEST')
 var pluginName = 'pl-custom-output'; var path = require('path')
 var fs = require('fs-extra'); var glob = require('glob')
 function onPatternIterate (patternlab, pattern) {
