@@ -1,5 +1,7 @@
 # Custom Output Plugin for Pattern Lab Node
 
+**NOTE: :boom: Plugin support is currently in alpha (Pattern Lab 2.6.0)**
+
 The Custom Output Plugin allows Pattern Lab Node to generate customized markup snippet files. The plugin adds support for additional keys in the metadata of components, allowing for custom modification of output, as well as (TODO) automatically maintaining dependency-graph based versioning across all components.
 
 ## Installation
