@@ -5,9 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "fs-extra": "^0.30.0",
-    "glob": "^7.0.0",
-    "gulp": "gulpjs/gulp#4.0",
-    "gulp-rename": ""
+    "glob": "^7.0.0"
   },
   "repository": {
     "type": "git",
