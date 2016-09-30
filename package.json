@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/MikaeI/pl-custom-output.git"
   },
+  "scripts": { "postinstall": "node ./postinstall.js" },
   "author": "Mikael Åsbjørnsson",
   "license": "MIT",
   "homepage": "https://github.com/MikaeI/pl-custom-output#readme"

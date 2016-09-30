@@ -2,6 +2,27 @@ var pluginName = 'pl-custom-output'; var path = require('path')
 var fs = require('fs-extra'); var glob = require('glob')
 function onPatternIterate (patternlab, pattern) {
   console.log('TEST...', patternlab.config.paths.source.patterns)
+
+
+  // var _path = require('path')
+  //
+  // var MP = require('./node_modules/patternlab-node/core/lib/markdown_parser')
+  // var markdown_parser = new MP()
+  // // Custom pattern output
+  // gulp.task('cpo', function () {
+  //   return gulp.src('./public/patterns/**/*')
+  //   .pipe(gulp_rename(function (path) {
+  //     if (path.dirname !== '.') {
+  //       var markdownFileName =
+  //       _path.resolve('source/_patterns/00-atomer/01-input/01-avkrysningsboks.md')
+  //       var markdownFileContents = fs.readFileSync(markdownFileName, 'utf8')
+  //       var markdownObject = markdown_parser.parse(markdownFileContents)
+  //       path.extname += markdownObject.version + path.extname
+  //     }
+  //   }))
+  //   .pipe(gulp.dest('./public/patterns'))
+  // })
+
 }
 function registerEvents (patternlab) {
   patternlab.events.on('patternlab-pattern-write-end', onPatternIterate)
