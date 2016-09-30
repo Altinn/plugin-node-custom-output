@@ -3,10 +3,13 @@ var fs = require('fs-extra'); var glob = require('glob')
 var gulp = require('gulp'); var gulp_rename = require('gulp-rename')
 var MP = require('../patternlab-node/core/lib/markdown_parser')
 function onPatternIterate (patternlab, pattern) {
-  console.log('TEST...', patternlab.config.paths.public.patterns + pattern + pattern + '.mustache')
+
+  console.log('TEST...', patternlab.config.paths.public.patterns + pattern.relPath + pattern.relPath + '.mustache')
+
+  console.log('partial', pattern.patternPartial)
 
   var patternFile = fs.readFileSync(
-    path.resolve(patternlab.config.paths.public.patterns + pattern + pattern + '.mustache'), 'utf8')
+    path.resolve(patternlab.config.paths.public.patterns + pattern.relPath + pattern.relPath + '.mustache'), 'utf8')
 
   console.log(patternFile)
 
