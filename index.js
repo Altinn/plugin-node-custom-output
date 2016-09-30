@@ -10,6 +10,7 @@ function onPatternIterate (patternlab, pattern) {
   }
   if (pattern.relPath.indexOf('probably-not-needed') === -1 &&
     pattern.relPath.indexOf('.mustache') !== -1) {
+    console.log(markdownFile)
     var patternFile = fs.readFileSync(
       path.resolve(
         patternlab.config.paths.public.patterns +
