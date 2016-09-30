@@ -2,14 +2,15 @@ var pluginName = 'plugin-node-custom-output'; var path = require('path')
 var fs = require('fs-extra'); var glob = require('glob')
 var MP = require('../patternlab-node/core/lib/markdown_parser')
 function onPatternIterate (patternlab, pattern) {
-  if (pattern.relPath.indexOf('probably-not-needed') === -1) {
+  if (pattern.relPath.indexOf('probably-not-needed') === -1 &&
+    pattern.relPath.indexOf('.mustache') !== -1) {
     var patternFile = fs.readFileSync(
       path.resolve(
         patternlab.config.paths.public.patterns +
         pattern.relPath.replace(/\//g, '-').replace('.mustache', '/') +
         pattern.relPath.replace(/\//g, '-')
       ), 'utf8')
-      console.log(patternFile)
+    console.log(patternFile)
   }
 
   // let tabJSFileContents = fs.readFileSync(pluginFiles[i], 'utf8')
