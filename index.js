@@ -3,6 +3,11 @@ var fs = require('fs-extra'); var glob = require('glob')
 var MP = require('../patternlab-node/core/lib/markdown_parser')
 var markdown_parser = new MP()
 function onPatternIterate (patternlab, pattern) {
+  if (pattern.relPath.indexOf('.md') !== -1) {
+    var markdownFile = fs.readFileSync(
+      path.resolve(patternlab.config.paths.source.patterns +
+        pattern.relPath), 'utf8')
+  }
   if (pattern.relPath.indexOf('probably-not-needed') === -1 &&
     pattern.relPath.indexOf('.mustache') !== -1) {
     var patternFile = fs.readFileSync(
@@ -10,7 +15,7 @@ function onPatternIterate (patternlab, pattern) {
         patternlab.config.paths.public.patterns +
         pattern.relPath.replace(/\//g, '-').replace('.mustache', '/') +
         pattern.relPath.replace(/\//g, '-')), 'utf8')
-    var markdownObject = markdown_parser.parse(patternFile)
+    var markdownObject = markdown_parser.parse(markdownFile)
     patternFile = markdownObject.prepend + patternFile + markdownObject.append
     fs.outputFileSync(patternlab.config.paths.public.patterns +
         pattern.relPath.replace(/\//g, '-').replace('.mustache', '/') +
