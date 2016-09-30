@@ -26,6 +26,7 @@ function onPatternIterate (patternlab, pattern) {
 
 }
 function registerEvents (patternlab) {
+  console.log('BEFORE 2')
   patternlab.events.on('patternlab-pattern-write-end', onPatternIterate)
 }
 function getPluginFrontendConfig () {
@@ -82,6 +83,7 @@ function pluginInit (patternlab) {
   }
   if (patternlab.config[pluginName] !== undefined &&
     !patternlab.config[pluginName]) {
+    console.log('BEFORE 1')
     registerEvents(patternlab); patternlab.config[pluginName] = true
   }
 }
