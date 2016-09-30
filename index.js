@@ -80,10 +80,9 @@ function pluginInit (patternlab) {
       }
     }
   }
-  console.log('HER', patternlab.config)
-  if (patternlab.config[pluginName] !== undefined &&
-    !patternlab.config[pluginName]) {
+  // if (patternlab.config[pluginName] !== undefined &&
+    // !patternlab.config[pluginName]) {
     registerEvents(patternlab); patternlab.config[pluginName] = true
-  }
+  // }
 }
 module.exports = pluginInit
