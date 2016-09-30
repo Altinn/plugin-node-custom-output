@@ -29,7 +29,3 @@ Upon build, the plugin will process the metadata and generate markup files in th
 ### TODO: Auto-versioning
 
 TODO: The plugin should enable the bumping of a component's version number to "bubble up" in the dependency tree. How do we accomplish this?
-
-## Enabling/disabling the plugin
-
-After install, you may manually enable or disable the plugin by removing it from the `patternlab-config.json` file. Installation added a key called `plugin-node-custom-output` to it.
