@@ -7,7 +7,7 @@ function onPatternIterate (patternlab, pattern) {
   var markdown_parser = new MP()
   gulp.src('./public/patterns/**/*')
     .pipe(gulp_rename(function (_path) {
-      if (path.dirname !== '.') {
+      if (_path.dirname !== '.') {
         var markdownFileName =
           path.resolve('./source/_patterns/00-atomer/01-input/01-avkrysningsboks.md')
         var markdownFileContents = fs.readFileSync(markdownFileName, 'utf8')
