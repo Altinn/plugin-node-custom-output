@@ -1,7 +1,7 @@
 var pluginName = 'plugin-node-custom-output'; var path = require('path')
 var fs = require('fs-extra'); var glob = require('glob')
 var gulp = require('gulp'); var gulp_rename = require('gulp-rename')
-var MP = require('./node_modules/patternlab-node/core/lib/markdown_parser')
+var MP = require('../patternlab-node/core/lib/markdown_parser')
 function onPatternIterate (patternlab, pattern) {
   // console.log('TEST...', patternlab.config.paths.source.patterns)
   var markdown_parser = new MP()
