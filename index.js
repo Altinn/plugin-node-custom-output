@@ -1,6 +1,7 @@
 var pluginName = 'plugin-node-custom-output'; var path = require('path')
 var fs = require('fs-extra'); var glob = require('glob')
 var MP = require('../patternlab-node/core/lib/markdown_parser')
+var markdown_parser = new MP()
 function onPatternIterate (patternlab, pattern) {
   if (pattern.relPath.indexOf('probably-not-needed') === -1 &&
     pattern.relPath.indexOf('.mustache') !== -1) {
@@ -8,30 +9,15 @@ function onPatternIterate (patternlab, pattern) {
       path.resolve(
         patternlab.config.paths.public.patterns +
         pattern.relPath.replace(/\//g, '-').replace('.mustache', '/') +
-        pattern.relPath.replace(/\//g, '-')
-      ), 'utf8')
-    console.log(patternFile)
+        pattern.relPath.replace(/\//g, '-')), 'utf8')
+    var markdownObject = markdown_parser.parse(patternFile)
+    patternFile = markdownObject.prepend + patternFile + markdownObject.append
+    fs.outputFileSync(patternlab.config.paths.public.patterns +
+        pattern.relPath.replace(/\//g, '-').replace('.mustache', '/') +
+        'custom-' + pattern.relPath.replace(/\//g, '-') + '-v' +
+        markdownObject.version + '.mustache',
+      patternFile)
   }
-
-  // let tabJSFileContents = fs.readFileSync(pluginFiles[i], 'utf8')
-  // tabJSFileContents = tabJSFileContents
-  //   .replace('/*SNIPPETS*/', tab_frontend_snippet)
-  // fs.outputFileSync(patternlab.config.paths.public.root + 'patterns', tabJSFileContents)
-
-  //
-  //
-  // var markdown_parser = new MP()
-  // gulp.src('./public/patterns/**/*')
-  //   .pipe(gulp_rename(function (_path) {
-  //     if (_path.dirname !== '.') {
-  //       var markdownFileName =
-  //         path.resolve('./source/_patterns/00-atomer/01-input/01-avkrysningsboks.md')
-  //       var markdownFileContents = fs.readFileSync(markdownFileName, 'utf8')
-  //       var markdownObject = markdown_parser.parse(markdownFileContents)
-  //       _path.extname += markdownObject.version + _path.extname
-  //     }
-  //   }))
-  // .pipe(gulp.dest('./public/patterns'))
 }
 function registerEvents (patternlab) {
   patternlab.events.on('patternlab-pattern-write-end', onPatternIterate)
