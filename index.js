@@ -6,7 +6,8 @@ function onPatternIterate (patternlab, pattern) {
   var patternFile = fs.readFileSync(
     path.resolve(
       patternlab.config.paths.public.patterns +
-      (pattern.relPath.replace(/\//g, '').replace('mustache', ''))
+      pattern.relPath.replace(/\//g, '-').replace('.mustache', '/') +
+      pattern.relPath.replace(/\//g, '-')
     ), 'utf8')
 
   console.log(patternFile)
