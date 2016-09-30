@@ -2,10 +2,15 @@ var pluginName = 'plugin-node-custom-output'; var path = require('path')
 var fs = require('fs-extra'); var glob = require('glob')
 var MP = require('../patternlab-node/core/lib/markdown_parser')
 var markdown_parser = new MP()
+function fileExists (filePath) {
+  try {
+    return fs.statSync(filePath).isFile()
+  } catch (err) { return false }
+}
 function onPatternIterate (patternlab, pattern) {
   var markdownFile = ''
   if (pattern.relPath.indexOf('.mustache') !== -1 &&
-    fs.statSync(path.resolve(patternlab.config.paths.source.patterns +
+    fileExists(path.resolve(patternlab.config.paths.source.patterns +
       pattern.relPath.replace('.mustache', '.md')))) {
     markdownFile = fs.readFileSync(
       path.resolve(patternlab.config.paths.source.patterns +
