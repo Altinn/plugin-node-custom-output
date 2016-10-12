@@ -10,8 +10,6 @@ function onPatternIterate (patternlab, pattern) {
   if (pattern.relPath.indexOf('probably-not-needed') === -1 &&
     pattern.relPath.indexOf('.mustache') !== -1) {
 
-    // TODO: Get from config (patternlab.config?)
-    var currentVersion = 5;
     var markdownObject = util.getPatternMarkdownObject(patternlab, pattern);
 
     if (markdownObject.data.version == patternlab.config.releaseVersion) {
@@ -22,7 +20,7 @@ function onPatternIterate (patternlab, pattern) {
   }
 }
 
-function updateVersionDependentPatterns(dfsdfsdf, pattern, newVersion)  {
+function updateVersionDependentPatterns(patternlab, pattern, newVersion)  {
   for (var i = 0; i < pattern.lineageR.length; i++) {
     var currentPattern = pattern.lineageR[i];
     var lineagePathParts = currentPattern.lineagePath.split('\\');
