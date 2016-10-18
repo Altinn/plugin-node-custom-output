@@ -49,7 +49,7 @@ function getPluginFrontendConfig () {
     'stylesheets': [],
     'javascripts': ['patternlab-components\/pattern-lab\/' + pluginName +
       '\/js\/' + pluginName + '.js'],
-    'onready': 'PluginCustomOutput.init()', 'callback': ''
+    'onready': '', 'callback': ''
   }
 }
 
