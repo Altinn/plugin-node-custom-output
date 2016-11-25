@@ -6,6 +6,18 @@ var util = require('./src/util');
 var stringExtensions = require('./src/extensions/stringExtensions');
 var snippetTemplate = require('./src/templates/snippetTemplate');
 
+function appendPatternDetails(patternlab) {
+  for (var i = 0; i < patternlab.patterns.length; i++) {
+    patternlab.patterns[i].template = '<!-- START: ' 
+      + patternlab.patterns[i].name 
+      + ' -->\n' 
+      + patternlab.patterns[i].template
+      + '\n<!-- END: ' 
+      + patternlab.patterns[i].name 
+      + ' -->\n';
+  }
+}
+
 function onPatternIterate (patternlab, pattern) {
   if (pattern.relPath.indexOf('probably-not-needed') === -1 &&
     pattern.relPath.indexOf('.mustache') !== -1) {
@@ -40,6 +52,7 @@ function updateVersionDependentPatterns(patternlab, pattern, newVersion)  {
 }
 
 function registerEvents (patternlab) {
+  patternlab.events.on('patternlab-pattern-iteration-end', appendPatternDetails);
   patternlab.events.on('patternlab-pattern-write-end', onPatternIterate);
 }
 
