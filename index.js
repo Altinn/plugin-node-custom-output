@@ -1,19 +1,27 @@
-var pluginName = 'plugin-node-custom-output'; 
+var pluginName = 'plugin-node-custom-output';
 var path = require('path');
-var fs = require('fs-extra'); 
+var fs = require('fs-extra');
 var glob = require('glob');
 var util = require('./src/util');
 var stringExtensions = require('./src/extensions/stringExtensions');
 var snippetTemplate = require('./src/templates/snippetTemplate');
 
 function appendPatternDetails(patternlab) {
+
   for (var i = 0; i < patternlab.patterns.length; i++) {
-    patternlab.patterns[i].template = '<!-- START: ' 
-      + patternlab.patterns[i].name 
-      + ' -->\n' 
+    var markdownObject = util.getPatternMarkdownObject(patternlab, patternlab.patterns[i]);
+
+    var jsData = "";
+    if(markdownObject.data["js"] !== undefined && markdownObject.data["js"].length > 0) {
+      jsData = " JS doc: " + markdownObject.data["js"];
+    }
+    patternlab.patterns[i].template = '<!-- START: '
+      + patternlab.patterns[i].name
+      + jsData
+      + ' -->\n'
       + patternlab.patterns[i].template
-      + '\n<!-- END: ' 
-      + patternlab.patterns[i].name 
+      + '\n<!-- END: '
+      + patternlab.patterns[i].name
       + ' -->\n';
   }
 }
@@ -53,7 +61,7 @@ function updateVersionDependentPatterns(patternlab, pattern, newVersion)  {
 
 function registerEvents (patternlab) {
   patternlab.events.on('patternlab-pattern-iteration-end', appendPatternDetails);
-  patternlab.events.on('patternlab-pattern-write-end', onPatternIterate);
+  // patternlab.events.on('patternlab-pattern-write-end', onPatternIterate);
 }
 
 function getPluginFrontendConfig () {
@@ -85,8 +93,8 @@ function pluginInit (patternlab) {
     console.log(ex);
   }
 
-  if (!patternlab.plugins) { 
-    patternlab.plugins = [] 
+  if (!patternlab.plugins) {
+    patternlab.plugins = []
   }
 
   patternlab.plugins.push(pluginConfig);
@@ -115,22 +123,7 @@ function pluginInit (patternlab) {
     }
   }
 
-  //setup listeners if not already active. we also enable and set the plugin as initialized
-  if (!patternlab.config.plugins) {
-    patternlab.config.plugins = {};
-  }
-
-  //attempt to only register events once
-  if (patternlab.config.plugins[pluginName] !== undefined &&
-     patternlab.config.plugins[pluginName].enabled &&
-     !patternlab.config.plugins[pluginName].initialized) {
-
-    //register events
-    registerEvents(patternlab);
-
-    //set the plugin initialized flag to true to indicate it is installed and ready
-    patternlab.config.plugins[pluginName].initialized = true;
-  }
+  registerEvents(patternlab); patternlab.config[pluginName] = true;
 }
 
 module.exports = pluginInit
